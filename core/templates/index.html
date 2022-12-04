@@ -8,7 +8,7 @@
         <div class="slide-1 home-slider">
             <div>
                 <div class="home  text-center">
-                    <img src="{% static 'images/home-banner/1.jpg' %}" alt="" class="bg-img blur-up lazyload">
+                    <img src="{% static 'images/_multikart_/slider_1.jpg' %}" alt="" class="bg-img blur-up lazyload">
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -16,7 +16,7 @@
                                     <div>
                                         <h4>welcome to fashion</h4>
                                         <h1>men fashion</h1>
-                                        <a href="#" class="btn btn-solid">shop now</a>
+                                        <a href="{% url 'products_list' %}" class="btn btn-solid">shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
             </div>
             <div>
                 <div class="home text-center">
-                    <img src="{% static 'images/home-banner/2.jpg' %}" alt="" class="bg-img blur-up lazyload">
+                    <img src="{% static 'images/_multikart_/slider_2.jpg' %}" alt="" class="bg-img blur-up lazyload">
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -34,7 +34,7 @@
                                     <div>
                                         <h4>welcome to fashion</h4>
                                         <h1>women fashion</h1>
-                                        <a href="#" class="btn btn-solid">shop now</a>
+                                        <a href="{% url 'products_list' %}" class="btn btn-solid">shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                     <a href="#">
                         <div class="collection-banner p-right text-center">
                             <div class="img-part">
-                                <img src="{% static 'images/sub-banner1.jpg' %}" class="img-fluid blur-up lazyload bg-img"
+                                <img src="{% static 'images/_multikart_/sub-banner1.jpg' %}" class="img-fluid blur-up lazyload bg-img"
                                     alt="">
                             </div>
                             <div class="contain-banner">
@@ -71,7 +71,7 @@
                     <a href="#">
                         <div class="collection-banner p-right text-center">
                             <div class="img-part">
-                                <img src="{% static 'images/sub-banner2.jpg' %}" class="img-fluid blur-up lazyload bg-img"
+                                <img src="{% static 'images/_multikart_/sub-banner2.jpg' %}" class="img-fluid blur-up lazyload bg-img"
                                     alt="">
                             </div>
                             <div class="contain-banner">
@@ -303,7 +303,7 @@
     <!-- Parallax banner -->
     <section class="p-0">
         <div class="full-banner parallax text-center p-left">
-            <img src="{% static 'images/parallax/1.jpg' %}" alt="" class="bg-img blur-up lazyload">
+            <img src="{% static 'images/_multikart_/jb.jpg' %}" alt="" class="bg-img blur-up lazyload">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -1364,101 +1364,27 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="slide-3 no-arrow">
-                        <div class="col-md-12">
-                            <a href="#">
-                                <div class="classic-effect">
-                                    <div>
-                                        <img src="{% static 'images/blog/1.jpg' %}" class="img-fluid blur-up lazyload bg-img"
-                                            alt="">
-                                    </div>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <div class="blog-details">
-                                <h4>25 January 2018</h4>
+                        {% for blog in blogs %}
+                            <div class="col-md-12">
                                 <a href="#">
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit,</p>
-                                </a>
-                                <hr class="style1">
-                                <h6>by: John Dio , 2 Comment</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="#">
-                                <div class="classic-effect">
-                                    <div>
-                                        <img src="{% static 'images/blog/2.jpg' %}" class="img-fluid blur-up lazyload bg-img"
-                                            alt="">
+                                    <div class="classic-effect">
+                                        <div>
+                                            <img src="{{ blog.image.url }}" class="img-fluid blur-up lazyload bg-img"
+                                                alt="">
+                                        </div>
+                                        <span></span>
                                     </div>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <div class="blog-details">
-                                <h4>25 January 2018</h4>
-                                <a href="#">
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit,</p>
                                 </a>
-                                <hr class="style1">
-                                <h6>by: John Dio , 2 Comment</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="#">
-                                <div class="classic-effect">
-                                    <div>
-                                        <img src="{% static 'images/blog/3.jpg' %}" class="img-fluid blur-up lazyload bg-img"
-                                            alt="">
-                                    </div>
-                                    <span></span>
+                                <div class="blog-details">
+                                    <h4>{{ blog.blog_date }}</h4>
+                                    <a href="#">
+                                        <p>{{ blog.description }}</p>
+                                    </a>
+                                    <hr class="style1">
+                                    <h6>{{ blog.author }}</h6>
                                 </div>
-                            </a>
-                            <div class="blog-details">
-                                <h4>25 January 2018</h4>
-                                <a href="#">
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit,</p>
-                                </a>
-                                <hr class="style1">
-                                <h6>by: John Dio , 2 Comment</h6>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="#">
-                                <div class="classic-effect">
-                                    <div>
-                                        <img src="{% static 'images/blog/4.jpg' %}" class="img-fluid blur-up lazyload bg-img"
-                                            alt="">
-                                    </div>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <div class="blog-details">
-                                <h4>25 January 2018</h4>
-                                <a href="#">
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit,</p>
-                                </a>
-                                <hr class="style1">
-                                <h6>by: John Dio , 2 Comment</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="#">
-                                <div class="classic-effect">
-                                    <div>
-                                        <img src="{% static 'images/blog/5.jpg' %}" class="img-fluid blur-up lazyload bg-img"
-                                            alt="">
-                                    </div>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <div class="blog-details">
-                                <h4>25 January 2018</h4>
-                                <a href="#">
-                                    <p>Lorem ipsum dolor sit consectetur adipiscing elit,</p>
-                                </a>
-                                <hr class="style1">
-                                <h6>by: John Dio , 2 Comment</h6>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -1474,78 +1400,16 @@
                 <div class="col-md-12 p-0">
                     <h2 class="title-borderless"># instagram</h2>
                     <div class="slide-7 no-arrow slick-instagram">
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/2.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                        {% for instalogo in instalogos %}
+                                <div>
+                                    <a href="#">
+                                        <div class="instagram-box"><img src="{{ instalogo.image.url }}" class="bg-img"
+                                                alt="Avatar" style="width:100%">
+                                            <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/3.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/4.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/9.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/6.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/7.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/8.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/9.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="instagram-box"> <img src="{% static 'images/slider/2.jpg' %}" class="bg-img"
-                                        alt="Avatar" style="width:100%">
-                                    <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                </div>
-                            </a>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -1560,46 +1424,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="slide-6 no-arrow">
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/1.png' %}" alt=""></a>
+                        {% for logo in logos %}
+                            <div>
+                                <div class="logo-block">
+                                    <a href="#"><img src="{{ logo.image.url }}" alt=""></a>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/2.png' %}" alt=""></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/3.png' %}" alt=""></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/4.png' %}" alt=""></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/5.png' %}" alt=""></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/6.png' %}" alt=""></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/7.png' %}" alt=""></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{% static 'images/logos/8.png' %}" alt=""></a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

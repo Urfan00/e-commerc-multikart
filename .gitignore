@@ -130,4 +130,4 @@ dmypy.json
 
 migrations
 pgdb
-media/
+media

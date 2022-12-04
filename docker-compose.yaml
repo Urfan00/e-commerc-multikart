@@ -10,7 +10,5 @@ services:
       - ./pgdb:/var/lib/postgresql/data
     ports:
       - 5432:5432
-    environment:
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_USER: user
-      POSTGRES_DB: multikart_db
+    env_file:
+      - .env

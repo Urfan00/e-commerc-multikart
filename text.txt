@@ -1,3 +1,5 @@
-profile.html  personal detila and shipping address +
+profile.html  personal detail and shipping address +
 register and login +
 change, forget password +
+faq, contact, about-us +
+index and base +-

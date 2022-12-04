@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="banner-section"><img src="{% static 'images/about/about%20us.jpg' %}"
+                    <div class="banner-section"><img src="{% static 'images/_multikart_/about-us.jpg' %}"
                             class="img-fluid blur-up lazyload" alt=""></div>
                 </div>
                 <div class="col-sm-12">
@@ -63,90 +63,20 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="slide-2 testimonial-slider no-arrow">
-                        <div>
-                            <div class="media">
-                                <div class="text-center">
-                                    <img src="{% static 'images/avtar.jpg' %}" alt="#">
-                                    <h5>Mark Jecno</h5>
-                                    <h6>Designer</h6>
-                                </div>
-                                <div class="media-body">
-                                    <p>you how all this mistaken idea of denouncing pleasure and praising pain was born
-                                        and I will give you a complete account of the system, and expound the actual
-                                        teachings.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="media">
-                                <div class="text-center">
-                                    <img src="{% static 'images/2.jpg' %}" alt="#">
-                                    <h5>Mark Jecno</h5>
-                                    <h6>Designer</h6>
-                                </div>
-                                <div class="media-body">
-                                    <p>you how all this mistaken idea of denouncing pleasure and praising pain was born
-                                        and I will give you a complete account of the system, and expound the actual
-                                        teachings.</p>
+                        {% for employee in employees %}
+                            <div>
+                                <div class="media">
+                                    <div class="text-center">
+                                        <img src="{{ employee.image.url }}" alt="#">
+                                        <h5>{{ employee.name }}</h5>
+                                        <h6>{{ employee.profession }}</h6>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{ employee.about }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="media">
-                                <div class="text-center">
-                                    <img src="{% static 'images/avtar.jpg' %}" alt="#">
-                                    <h5>Mark Jecno</h5>
-                                    <h6>Designer</h6>
-                                </div>
-                                <div class="media-body">
-                                    <p>you how all this mistaken idea of denouncing pleasure and praising pain was born
-                                        and I will give you a complete account of the system, and expound the actual
-                                        teachings.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="media">
-                                <div class="text-center">
-                                    <img src="{% static 'images/avtar.jpg' %}" alt="#">
-                                    <h5>Mark Jecno</h5>
-                                    <h6>Designer</h6>
-                                </div>
-                                <div class="media-body">
-                                    <p>you how all this mistaken idea of denouncing pleasure and praising pain was born
-                                        and I will give you a complete account of the system, and expound the actual
-                                        teachings.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="media">
-                                <div class="text-center">
-                                    <img src="{% static 'images/avtar.jpg' %}" alt="#">
-                                    <h5>Mark Jecno</h5>
-                                    <h6>Designer</h6>
-                                </div>
-                                <div class="media-body">
-                                    <p>you how all this mistaken idea of denouncing pleasure and praising pain was born
-                                        and I will give you a complete account of the system, and expound the actual
-                                        teachings.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="media">
-                                <div class="text-center">
-                                    <img src="{% static 'images/avtar.jpg' %}" alt="#">
-                                    <h5>Mark Jecno</h5>
-                                    <h6>Designer</h6>
-                                </div>
-                                <div class="media-body">
-                                    <p>you how all this mistaken idea of denouncing pleasure and praising pain was born
-                                        and I will give you a complete account of the system, and expound the actual
-                                        teachings.</p>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -162,41 +92,17 @@
                 <div class="col-sm-12">
                     <h2>Our Team</h2>
                     <div class="team-4">
-                        <div>
+                        {% for member in team %}
+
                             <div>
-                                <img src="{% static 'images/team/1.jpg' %}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                <div>
+                                    <img src="{{ member.image.url }}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                </div>
+                                <h4>{{ member.name }}</h4>
+                                <h6>{{ member.position }}</h6>
                             </div>
-                            <h4>Hileri Keol</h4>
-                            <h6>CEo & Founder At Company</h6>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="{% static 'images/team/2.jpg' %}" class="img-fluid blur-up lazyload bg-img" alt="">
-                            </div>
-                            <h4>Hileri Keol</h4>
-                            <h6>CEo & Founder At Company</h6>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="{% static 'images/team/3.jpg' %}" class="img-fluid blur-up lazyload bg-img" alt="">
-                            </div>
-                            <h4>Hileri Keol</h4>
-                            <h6>CEo & Founder At Company</h6>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="{% static 'images/team/4.jpg' %}" class="img-fluid blur-up lazyload bg-img" alt="">
-                            </div>
-                            <h4>Hileri Keol</h4>
-                            <h6>CEo & Founder At Company</h6>
-                        </div>
-                        <div>
-                            <div>
-                                <img src="{% static 'images/team/1.jpg' %}" class="img-fluid blur-up lazyload bg-img" alt="">
-                            </div>
-                            <h4>Hileri Keol</h4>
-                            <h6>CEo & Founder At Company</h6>
-                        </div>
+
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -284,4 +190,5 @@
         </section>
     </div>
     <!-- service section end -->
+
 {% endblock %}

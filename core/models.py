@@ -29,6 +29,20 @@ class Faq(models.Model):
         verbose_name_plural = "FAQs"
 
 
+class Employees(models.Model):
+    name = models.CharField(max_length=50)
+    profession = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="employee_images")
+    about = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
+
+
 class OurTeam(models.Model):
     name = models.CharField(max_length= 50)
     image = models.ImageField(upload_to="team_images")
@@ -48,6 +62,13 @@ class Blog(models.Model):
         return self.author
 
 
+class Instagram(models.Model):
+    image = models.ImageField(upload_to='instagram_images')
+
+    def __str__(self):
+        return f'Instagram {self.id}'
+
+
 class Logo(models.Model):
     image = models.ImageField(upload_to='logo_images')
 
@@ -55,25 +76,8 @@ class Logo(models.Model):
         return f'Logo {self.id}'
 
 
-class InstaLogo(models.Model):
-    image = models.ImageField(upload_to='instalogo_images')
-
-    def __str__(self):
-        return f'InstaLogo {self.id}'
-
-
 class Subscribe(models.Model):
     email = models.EmailField(max_length=30, unique=True)
 
     def __str__(self):
         return self.email
-
-
-class Employees(models.Model):
-    name = models.CharField(max_length=50)
-    profession = models.CharField(max_length=50)
-    image = models.ImageField(upload_to="employee_images")
-    about = models.TextField()
-
-    def __str__(self):
-        return self.name

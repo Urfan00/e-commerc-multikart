@@ -39,7 +39,7 @@
                     <div class="contact-right">
                         <ul>
                             <li>
-                                <div class="contact-icon"><img src="../assets/images/icon/phone.png"
+                                <div class="contact-icon"><img src="{% static 'images/icon/phone.png' %}"
                                         alt="Generic placeholder image">
                                     <h6>Contact Us</h6>
                                 </div>
@@ -58,7 +58,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="contact-icon"><img src="../assets/images/icon/email.png"
+                                <div class="contact-icon"><img src="{% static 'images/icon/email.png' %}"
                                         alt="Generic placeholder image">
                                     <h6>Address</h6>
                                 </div>
@@ -82,30 +82,44 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <form class="theme-form">
+                    <form method="POST" class="theme-form">
+                        {% include 'messages.html' %}
+
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <div id="form_errors">
+                                    {% for key, value in form.errors.items %}
+                                        <strong>{{ value }}</strong>
+                                    {% endfor %}
+                                </div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="name">First Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Your name"
-                                    required="">
+                                <label for='id_first_name' class='text-dark'>{{ form.first_name.label }}</label>
+                                {{ form.first_name }}
                             </div>
                             <div class="col-md-6">
-                                <label for="email">Last Name</label>
-                                <input type="text" class="form-control" id="last-name" placeholder="Email" required="">
+                                <label for='id_last_name' class='text-dark'>{{ form.last_name.label }}</label>
+                                {{ form.last_name }}
                             </div>
                             <div class="col-md-6">
-                                <label for="review">Phone number</label>
-                                <input type="text" class="form-control" id="review" placeholder="Enter your number"
-                                    required="">
+                                <label for='id_email' class='text-dark'>{{ form.email.label }}</label>
+                                {{ form.email }}
                             </div>
                             <div class="col-md-6">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                <label for='id_phone_number' class='text-dark'>{{ form.phone_number.label }}</label>
+                                {{ form.phone_number }}
                             </div>
                             <div class="col-md-12">
-                                <label for="review">Write Your Message</label>
-                                <textarea class="form-control" placeholder="Write Your Message"
-                                    id="exampleFormControlTextarea1" rows="6"></textarea>
+                                <label for='id_message' class='text-dark'>{{ form.message.label }}</label>
+                                {{ form.message }}
                             </div>
                             <div class="col-md-12">
                                 <button class="btn btn-solid" type="submit">Send Your Message</button>
