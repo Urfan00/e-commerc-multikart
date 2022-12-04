@@ -1,0 +1,3 @@
+profile.html  personal detila and shipping address +
+register and login +
+change, forget password +

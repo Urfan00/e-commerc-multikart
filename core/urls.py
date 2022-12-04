@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import error, faq, index, contact, about, profile
+from .views import error, faq, index, contact, about
 
 urlpatterns = [
     path('error/', error, name = 'error'),
@@ -7,5 +7,4 @@ urlpatterns = [
     path('', index, name = 'index'),
     path('contact/', contact, name = 'contact'),
     path('about_us/', about, name = 'about-us'),
-    path('profile/', profile, name = 'profile'),
 ]

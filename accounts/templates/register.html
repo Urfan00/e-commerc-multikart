@@ -33,30 +33,53 @@
                 <div class="col-lg-12">
                     <h3>create account</h3>
                     <div class="theme-card">
-                        <form class="theme-form">
+                        <form action="{% url 'register' %}" method="POST" class="theme-form">
+                            {% csrf_token %}
+
+                            {% if form.errors %}
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <div id="form_errors">
+                                        {% for key, value in form.errors.items %}
+                                            <strong>{{ value }}</strong>
+                                        {% endfor %}
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="email">First Name</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="First Name"
-                                        required="">
+                                    <label for='id_first_name' class='text-dark'>{{ form.first_name.label }}</label>
+                                    {{ form.first_name }}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="review">Last Name</label>
-                                    <input type="password" class="form-control" id="lname" placeholder="Last Name"
-                                        required="">
+                                    <label for='id_last_name' class='text-dark'>{{ form.last_name.label }}</label>
+                                    {{ form.last_name }}
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="email">email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                    <label for='id_username' class='text-dark'>{{ form.username.label }}</label>
+                                    {{ form.username }}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="review">Password</label>
-                                    <input type="password" class="form-control" id="review"
-                                        placeholder="Enter your password" required="">
-                                </div><a href="#" class="btn btn-solid">create Account</a>
+                                    <label for='id_email' class='text-dark'>{{ form.email.label }}</label>
+                                    {{ form.email }}
+                                </div>
                             </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for='id_password1' class='text-dark'>{{ form.password1.label }}</label>
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for='id_password2' class='text-dark'>{{ form.password2.label }}</label>
+                                    {{ form.password2 }}
+                                </div>
+                            </div>
+                            <button class="btn btn-solid" type="submit">Create Account</button>
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>profile</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+
+
+    <!-- personal deatail section start -->
+    <section class="contact-page register-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>PERSONAL DETAIL</h3>
+                    <form method="POST" class="theme-form">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <div id="form_errors">
+                                    {% for key, value in form.errors.items %}
+                                        <strong>{{ value }}</strong>
+                                    {% endfor %}
+                                </div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for='id_first_name'>{{ forms.detail.first_name.label }}</label>
+                                {{ forms.detail.first_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_last_name'>{{ forms.detail.last_name.label }}</label>
+                                {{ forms.detail.last_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_email'>{{ forms.detail.email.label }}</label>
+                                {{ forms.detail.email }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_phone_number'>{{ forms.detail.phone_number.label }}</label>
+                                {{ forms.detail.phone_number }}
+                            </div>
+                            <div class="col-md-12">
+                                <label for='id_message'>{{ forms.detail.message.label }}</label>
+                                {{ forms.detail.message }}
+                            </div>
+                        </div>
+
+                    <h3>SHIPPING ADDRESS</h3>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for='id_company_name'>{{ forms.address.company_name.label }}</label>
+                                {{ forms.address.company_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_address'>{{ forms.address.address.label }}</label>
+                                {{ forms.address.address }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_postal_code'>{{ forms.address.postal_code.label }}</label>
+                                {{ forms.address.postal_code }}
+                            </div>
+                            <div class="col-md-6 select_input">
+                                <label for='id_Country'>{{ forms.address.Country.label }}</label>
+                                {{ forms.address.Country }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_city'>{{ forms.address.city.label }}</label>
+                                {{ forms.address.city }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for='id_region_state'>{{ forms.address.region_state.label }}</label>
+                                {{ forms.address.region_state }}
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-sm btn-solid" type="submit">Save setting</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+
+{% endblock %}
