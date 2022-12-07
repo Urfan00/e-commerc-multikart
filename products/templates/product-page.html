@@ -40,15 +40,13 @@
                                 </span>
                             </div>
                             <div class="collection-collapse-block border-0 open">
-                                <h3 class="collapse-block-title">brand</h3>
+                                <h3 class="collapse-block-title">Category</h3>
                                 <div class="collection-collapse-block-content">
                                     <div class="collection-brand-filter">
                                         <ul class="category-list">
-                                            <li><a href="#">clothing</a></li>
-                                            <li><a href="#">bags</a></li>
-                                            <li><a href="#">footwear</a></li>
-                                            <li><a href="#">watches</a></li>
-                                            <li><a href="#">accessories</a></li>
+                                            {% for category in categories %}
+                                                <li><a href="{% url 'products_list' %}?category={{category.category_name}}">{{category.category_name}}</a></li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
@@ -167,86 +165,54 @@
                             <h5 class="title-border">new product</h5>
                             <div class="offer-slider slide-1">
                                 <div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="{% static 'images/pro/1.jpg' %}" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
+                                    {% for new_product in new_products %}
+                                        <div class="media">
+                                            <a href="{% url 'product_detail' new_product.product_id.slug %}"><img class="img-fluid blur-up lazyload"
+                                                    src="{{ new_product.product_id.cover_image.url }}" alt=""></a>
+                                            <div class="media-body align-self-center">
+                                                <div class="rating">
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                </div>
+                                                <a href="{% url 'product_detail' new_product.product_id.slug %}">
+                                                    <h6>{{ new_product.product_id.product_name }}</h6>
+                                                </a>
+                                                {% if new_product.product_id.in_sale %}
+                                                    <h4>${{ new_product.product_id.new_price|floatformat:2 }} <del>${{ new_product.product_id.price|floatformat:2 }}</del></h4>
+                                                {% else %}
+                                                    <h4>${{ new_product.product_id.price|floatformat:2 }}</h4>
+                                                {% endif %}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="{% static 'images/pro/1.jpg' %}" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="{% static 'images/pro/1.jpg' %}" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                                 <div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="{% static 'images/pro/1.jpg' %}" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
+                                    {% for new_product in new_products2 %}
+                                        <div class="media">
+                                            <a href="{% url 'product_detail' new_product.product_id.slug %}"><img class="img-fluid blur-up lazyload"
+                                                    src="{{ new_product.product_id.cover_image.url }}" alt=""></a>
+                                            <div class="media-body align-self-center">
+                                                <div class="rating">
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                </div>
+                                                <a href="{% url 'product_detail' new_product.product_id.slug %}">
+                                                    <h6>{{ new_product.product_id.product_name }}</h6>
+                                                </a>
+                                                {% if new_product.product_id.in_sale %}
+                                                    <h4>${{ new_product.product_id.new_price|floatformat:2 }} <del>${{ new_product.product_id.price|floatformat:2 }}</del></h4>
+                                                {% else %}
+                                                    <h4>${{ new_product.product_id.price|floatformat:2 }}</h4>
+                                                {% endif %}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="{% static 'images/pro/1.jpg' %}" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a href=""><img class="img-fluid blur-up lazyload"
-                                                src="{% static 'images/pro/1.jpg' %}" alt=""></a>
-                                        <div class="media-body align-self-center">
-                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i></div><a
-                                                href="product-page(no-sidebar).html">
-                                                <h6>Slim Fit Cotton Shirt</h6>
-                                            </a>
-                                            <h4>$500.00</h4>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -263,39 +229,48 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="product-slick">
-                                        <div><img src="{% static 'images/pro3/1.jpg' %}" alt=""
-                                                class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
-                                        <div><img src="{% static 'images/pro3/2.jpg' %}" alt=""
-                                                class="img-fluid blur-up lazyload image_zoom_cls-1"></div>
-                                        <div><img src="{% static 'images/pro3/27.jpg' %}" alt=""
-                                                class="img-fluid blur-up lazyload image_zoom_cls-2"></div>
-                                        <div><img src="{% static 'images/pro3/27.jpg' %}" alt=""
-                                                class="img-fluid blur-up lazyload image_zoom_cls-3"></div>
+                                        <div><img src="{{ product.cover_image.url }}" alt="" class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
+                                        {% for image in images %}
+                                            {% for image_product in image.images_of_products.all %}
+                                                {% if image_product.id == product.id %}
+                                                    <div><img src="{{ image.image.url }}" alt="" class="img-fluid blur-up lazyload image_zoom_cls-1"></div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
                                     </div>
                                     <div class="row">
                                         <div class="col-12 p-0">
                                             <div class="slider-nav">
-                                                <div><img src="{% static 'images/pro3/1.jpg' %}" alt=""
-                                                        class="img-fluid blur-up lazyload"></div>
-                                                <div><img src="{% static 'images/pro3/2.jpg' %}" alt=""
-                                                        class="img-fluid blur-up lazyload"></div>
-                                                <div><img src="{% static 'images/pro3/27.jpg' %}" alt=""
-                                                        class="img-fluid blur-up lazyload"></div>
-                                                <div><img src="{% static 'images/pro3/27.jpg' %}" alt=""
-                                                        class="img-fluid blur-up lazyload"></div>
+                                                <div><img src="{{ product.cover_image.url }}" alt="" class="img-fluid blur-up lazyload"></div>
+                                                {% for image in images %}
+                                                    {% for image_product in image.images_of_products.all %}
+                                                        {% if image_product.id == product.id %}
+                                                            <div><img src="{{ image.image.url }}" alt="" class="img-fluid blur-up lazyload"></div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 rtl-text">
                                     <div class="product-right">
-                                        <h2>Women Pink Shirt</h2>
-                                        <h4><del>$459.00</del><span>55% off</span></h4>
-                                        <h3>$32.96</h3>
+                                        <h2>{{ product.product_name }}</h2>
+
+                                        {% if product.in_sale %}
+                                            <h4><del>${{ product.price|floatformat:2 }}</del><span>{{ product.discount }}% off</span></h4>
+                                            <h3>${{ product.new_price|floatformat:2 }}</h3>
+                                        {% else %}
+                                            <h3>${{ product.price|floatformat:2 }}</h3>
+                                        {% endif %}
                                         <ul class="color-variant">
-                                            <li class="bg-light0"></li>
-                                            <li class="bg-light1"></li>
-                                            <li class="bg-light2"></li>
+                                            {% for color in colors %}
+                                                {% for color_product in color.product_color.all %}
+                                                    {% if color_product.id == product.id %}
+                                                        <li style="background-color: {{ color.name|lower}}; border: 1px solid #aaa;"></li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
                                         </ul>
                                         <div class="product-description border-product">
                                             <h6 class="product-title size-text">select size <span><a href=""
@@ -320,23 +295,30 @@
                                             </div>
                                             <div class="size-box">
                                                 <ul>
-                                                    <li class="active"><a href="#">s</a></li>
-                                                    <li><a href="#">m</a></li>
-                                                    <li><a href="#">l</a></li>
-                                                    <li><a href="#">xl</a></li>
+                                                    {% for size in sizes %}
+                                                        {% for size_product in size.product_size.all %}
+                                                            {% if size_product.id == product.id %}
+                                                                <li class="active"><a href="#">{{ size.name }}</a></li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endfor %}
                                                 </ul>
                                             </div>
                                             <h6 class="product-title">quantity</h6>
                                             <div class="qty-box">
-                                                <div class="input-group"><span class="input-group-prepend"><button
-                                                            type="button" class="btn quantity-left-minus"
-                                                            data-type="minus" data-field=""><i
-                                                                class="ti-angle-left"></i></button> </span>
-                                                    <input type="text" name="quantity" class="form-control input-number"
-                                                        value="1"> <span class="input-group-prepend"><button
-                                                            type="button" class="btn quantity-right-plus"
-                                                            data-type="plus" data-field=""><i
-                                                                class="ti-angle-right"></i></button></span></div>
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button" class="btn quantity-left-minus" data-type="minus" data-field="">
+                                                            <i class="ti-angle-left"></i>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="quantity" disabled class="form-control input-number" value="1">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button" class="btn quantity-right-plus" data-type="plus" data-field="">
+                                                            <i class="ti-angle-right"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="product-buttons"><a href="#" data-toggle="modal"
@@ -344,10 +326,7 @@
                                                 href="#" class="btn btn-solid">buy now</a></div>
                                         <div class="border-product">
                                             <h6 class="product-title">product details</h6>
-                                            <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
-                                                accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab
-                                                illo inventore veritatis et quasi architecto beatae vitae dicta sunt,
-                                                explicabo. Nemo enim ipsam voluptatem,</p>
+                                            <p>{{ product.product_details }}</p>
                                         </div>
                                         <div class="border-product">
                                             <h6 class="product-title">share it</h6>
@@ -360,8 +339,10 @@
                                                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                                                 </ul>
                                                 <form class="d-inline-block">
-                                                    <button class="wishlist-btn"><i class="fa fa-heart"></i><span
-                                                            class="title-font">Add To WishList</span></button>
+                                                    <button class="wishlist-btn">
+                                                        <i class="fa fa-heart"></i>
+                                                        <span class="title-font">Add To WishList</span>
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
@@ -410,35 +391,11 @@
                                     <div class="tab-content nav-material" id="top-tabContent">
                                         <div class="tab-pane fade show active" id="top-home" role="tabpanel"
                                             aria-labelledby="top-home-tab">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                since the 1500s, when an unknown printer took a galley of type and
-                                                scrambled it to make a type specimen book. It has survived not only five
-                                                centuries, but also the leap into electronic typesetting, remaining
-                                                essentially unchanged. It was popularised in the 1960s with the release
-                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                with desktop publishing software like Aldus PageMaker including versions
-                                                of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
-                                                typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                                text ever since the 1500s, when an unknown printer took a galley of type
-                                                and scrambled it to make a type specimen book. It has survived not only
-                                                five centuries, but also the leap into electronic typesetting, remaining
-                                                essentially unchanged. It was popularised in the 1960s with the release
-                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                with desktop publishing software like Aldus PageMaker including versions
-                                                of Lorem Ipsum.</p>
+                                            <p>{{ product.long_description }}</p>
                                         </div>
                                         <div class="tab-pane fade" id="top-profile" role="tabpanel"
                                             aria-labelledby="profile-top-tab">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                since the 1500s, when an unknown printer took a galley of type and
-                                                scrambled it to make a type specimen book. It has survived not only five
-                                                centuries, but also the leap into electronic typesetting, remaining
-                                                essentially unchanged. It was popularised in the 1960s with the release
-                                                of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                with desktop publishing software like Aldus PageMaker including versions
-                                                of Lorem Ipsum.</p>
+                                            <p>{{ product.short_description }}</p>
                                             <div class="single-product-tables">
                                                 <table>
                                                     <tbody>
@@ -480,41 +437,75 @@
                                         </div>
                                         <div class="tab-pane fade" id="top-review" role="tabpanel"
                                             aria-labelledby="review-top-tab">
-                                            <form class="theme-form">
+
+                                            {% for review in reviews %}
+                                                <div class="card mb-2">
+                                                    <div class="card-body">
+                                                        <div class="d-flex flex-start align-items-center">
+                                                            <img class="rounded-circle shadow-1-strong me-3"
+                                                                src="{% static 'images/_multikart_/user_icon.jpeg' %}" alt="avatar"
+                                                                width="40" height="40" />
+                                                            <div>
+                                                                <h6 class="fw-bold text-primary mx-2 mb-1">{{ review.name | title}}</h6>
+                                                                <h6 class="text-muted small mx-2 mb-1">Shared publicly - {{ review.created_at | date:"j/n/Y"}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            {{ review.review_title_1 }}
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            {{ review.review_title_2 }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                            <form action="{% url 'product_detail' slug=product.slug %}" method="POST" class="theme-form">
+                                                {% csrf_token %}
+
+                                                {% if form.errors %}
+                                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                                        <div id="form_errors">
+                                                            {% for key, value in form.errors.items %}
+                                                                <strong>{{ value }}</strong>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                {% endif %}
+
                                                 <div class="form-row">
                                                     <div class="col-md-12">
                                                         <div class="media">
                                                             <label>Rating</label>
                                                             <div class="media-body ml-3">
-                                                                <div class="rating three-star"><i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i> <i
-                                                                        class="fa fa-star"></i></div>
+                                                                <div class="rating three-star">
+                                                                    <input id="rating1" type="radio" name="product_rate" value="1">
+                                                                    <input id="rating2" type="radio" name="product_rate" value="2">
+                                                                    <input id="rating3" type="radio" name="product_rate" value="3">
+                                                                    <input id="rating4" type="radio" name="product_rate" value="4">
+                                                                    <input id="rating5" type="radio" name="product_rate" value="5">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label for="name">Name</label>
-                                                        <input type="text" class="form-control" id="name"
-                                                            placeholder="Enter Your name" required>
+                                                        <label for="id_name">{{ form.name.label }}</label>
+                                                        {{ form.name }}
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label for="email">Email</label>
-                                                        <input type="text" class="form-control" id="email"
-                                                            placeholder="Email" required>
+                                                        <label for="id_email">{{ form.email.label }}</label>
+                                                        {{ form.email }}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="review">Review Title</label>
-                                                        <input type="text" class="form-control" id="review"
-                                                            placeholder="Enter your Review Subjects" required>
+                                                        <label for="id_review_title_1">{{ form.review_title_1.label }}</label>
+                                                        {{ form.review_title_1 }}
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label for="review">Review Title</label>
-                                                        <textarea class="form-control"
-                                                            placeholder="Wrire Your Testimonial Here"
-                                                            id="exampleFormControlTextarea1" rows="6"></textarea>
+                                                        <label for="id_review_title_2">{{ form.review_title_2.label }}</label>
+                                                        {{ form.review_title_2 }}
                                                     </div>
                                                     <div class="col-md-12">
                                                         <button class="btn btn-solid" type="submit">Submit YOur
@@ -544,210 +535,47 @@
                 </div>
             </div>
             <div class="row search-product">
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="product-box">
-                        <div class="img-wrapper">
-                            <div class="front">
-                                <a href="#"><img src="{% static 'images/pro3/33.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                {% for relate in related %}
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="product-box">
+                            <div class="img-wrapper">
+                                <div class="front">
+                                    <a href="{% url 'product_detail' relate.product_id.slug %}"><img src="{{ relate.product_id.cover_image.url }}"
+                                            class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                </div>
+                                <div class="cart-info cart-wrap">
+                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
+                                            class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
+                                        title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
+                                        data-toggle="modal" data-target="#quick-view" title="Quick View"><i
+                                            class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
+                                        title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
                             </div>
-                            <div class="back">
-                                <a href="#"><img src="{% static 'images/pro3/34.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                            <div class="product-detail">
+                                <div class="rating">
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                </div>
+                                <a href="{% url 'product_detail' relate.product_id.slug %}">
+                                    <h6>{{ relate.product_id.product_name }}</h6>
+                                </a>
+                                {% if relate.product_id.in_sale %}
+                                    <h4>${{ relate.product_id.new_price|floatformat:2 }} <del>${{ relate.product_id.price|floatformat:2 }}</del></h4>
+                                {% else %}
+                                    <h4>${{ relate.product_id.price|floatformat:2 }}</h4>
+                                {% endif %}
+                                <ul class="color-variant">
+                                    {% for color in relate.color_id.all %}
+                                        <li style="background-color: {{ color.name|lower}}; border: 1px solid #aaa;"></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
-                            <div class="cart-info cart-wrap">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                        class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                    title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                    data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                    title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                        </div>
-                        <div class="product-detail">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                            <a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                            <h4>$500.00</h4>
-                            <ul class="color-variant">
-                                <li class="bg-light0"></li>
-                                <li class="bg-light1"></li>
-                                <li class="bg-light2"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="product-box">
-                        <div class="img-wrapper">
-                            <div class="front">
-                                <a href="#"><img src="{% static 'images/pro3/1.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="back">
-                                <a href="#"><img src="{% static 'images/pro3/2.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="cart-info cart-wrap">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                        class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                    title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                    data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                    title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                        </div>
-                        <div class="product-detail">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                            <a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                            <h4>$500.00</h4>
-                            <ul class="color-variant">
-                                <li class="bg-light0"></li>
-                                <li class="bg-light1"></li>
-                                <li class="bg-light2"></li>
-                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="product-box">
-                        <div class="img-wrapper">
-                            <div class="front">
-                                <a href="#"><img src="{% static 'images/pro3/27.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="back">
-                                <a href="#"><img src="{% static 'images/pro3/28.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="cart-info cart-wrap">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                        class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                    title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                    data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                    title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                        </div>
-                        <div class="product-detail">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                            <a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                            <h4>$500.00</h4>
-                            <ul class="color-variant">
-                                <li class="bg-light0"></li>
-                                <li class="bg-light1"></li>
-                                <li class="bg-light2"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="product-box">
-                        <div class="img-wrapper">
-                            <div class="front">
-                                <a href="#"><img src="{% static 'images/pro3/35.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="back">
-                                <a href="#"><img src="{% static 'images/pro3/36.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="cart-info cart-wrap">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                        class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                    title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                    data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                    title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                        </div>
-                        <div class="product-detail">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                            <a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                            <h4>$500.00</h4>
-                            <ul class="color-variant">
-                                <li class="bg-light0"></li>
-                                <li class="bg-light1"></li>
-                                <li class="bg-light2"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="product-box">
-                        <div class="img-wrapper">
-                            <div class="front">
-                                <a href="#"><img src="{% static 'images/pro3/2.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="back">
-                                <a href="#"><img src="{% static 'images/pro3/1.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="cart-info cart-wrap">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                        class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                    title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                    data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                    title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                        </div>
-                        <div class="product-detail">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                            <a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                            <h4>$500.00</h4>
-                            <ul class="color-variant">
-                                <li class="bg-light0"></li>
-                                <li class="bg-light1"></li>
-                                <li class="bg-light2"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="product-box">
-                        <div class="img-wrapper">
-                            <div class="front">
-                                <a href="#"><img src="{% static 'images/pro3/28.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="back">
-                                <a href="#"><img src="{% static 'images/pro3/27.jpg' %}"
-                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            </div>
-                            <div class="cart-info cart-wrap">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                        class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                    title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                    data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                    title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                        </div>
-                        <div class="product-detail">
-                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                            <a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                            <h4>$500.00</h4>
-                            <ul class="color-variant">
-                                <li class="bg-light0"></li>
-                                <li class="bg-light1"></li>
-                                <li class="bg-light2"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

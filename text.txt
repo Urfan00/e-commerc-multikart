@@ -3,3 +3,5 @@ register and login +
 change, forget password +
 faq, contact, about-us +
 index and base +-
+category-page.html ==> price filter and pagination and sorting
+product-page.html ==> quantity

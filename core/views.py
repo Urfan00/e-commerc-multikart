@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from products.models import ProductVersion
 from .models import Blog, Employees, Faq, Instagram, Logo, OurTeam
 from .forms import ContactFormModel
 from django.urls import reverse_lazy
@@ -14,6 +15,10 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['fashion_products'] = ProductVersion.objects.filter(product_id__category_id__category_name = 'Fashion').all()
+        context['new_products'] = ProductVersion.objects.order_by('created_at').all()[:8]
+        context['most_read'] = ProductVersion.objects.order_by('-read_count').all()[:8]
+        context['most_review'] = ProductVersion.objects.order_by('-review_count').all()[:8]
         context['instalogos'] = Instagram.objects.all()
         context['logos'] = Logo.objects.all()
         return context
