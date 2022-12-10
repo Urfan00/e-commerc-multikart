@@ -26,5 +26,8 @@ urlpatterns = [
     path('order/', include('order.urls')),
     path('products/', include('products.urls')),
 
+
+    path('api/', include('products.api.urls')),
+
     path('', include('social_django.urls', namespace='social')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

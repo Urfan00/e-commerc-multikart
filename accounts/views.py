@@ -19,7 +19,7 @@ from multi_form_view import MultiModelFormView
 
 
 class LogInView(LoginView):
-    template_name: str = 'login.html'
+    template_name = 'login.html'
     form_class = LoginForm
 
 

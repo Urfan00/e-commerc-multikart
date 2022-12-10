@@ -80,7 +80,7 @@ class Products(models.Model):
         return self.product_name
 
     def get_absolute_url(self):
-        return reverse("product_page", kwargs={"slug": self.slug})
+        return reverse("product_detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.product_name)
@@ -98,7 +98,6 @@ class ProductVersion(models.Model):
     rate_avg = models.FloatField(default=0)
     review_count = models.PositiveIntegerField(default=0)
     read_count = models.PositiveIntegerField(default=0)
-    datetime = models.DateTimeField(auto_now_add=True)
     size_id = models.ManyToManyField(Size, related_name="product_size")
     color_id = models.ManyToManyField(Color, related_name="product_color")
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_version")
