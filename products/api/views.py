@@ -2,6 +2,7 @@ import django_filters.rest_framework
 from rest_framework import filters
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from products.models import Brand, Category, Color, ProductVersion, Products, Size
 from products.api.serializers import BrandCreateSerializer, BrandReadSerializer, CategorySerializer, ColorSerializer, ProductCreateSerializer, ProductReadSerializer, ProductVersionCreateSerializer, ProductVersionReadSerializer, SizeSerializer
 from rest_framework.response import Response
@@ -66,6 +67,7 @@ class GenericAPIViewSerializerMixin:
 
 class ProductAPI(GenericAPIViewSerializerMixin, ListCreateAPIView):
     queryset = Products.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['category_id', 'brand_id']
     search_fields = ['name']
@@ -86,6 +88,7 @@ class ProductReadUpdateDeleteView(GenericAPIViewSerializerMixin, RetrieveUpdateD
 
 class ProductVersionAPI(GenericAPIViewSerializerMixin, ListCreateAPIView):
     queryset = ProductVersion.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['product_id__category_id', 'product_id__brand_id', 'size_id', 'color_id']
     search_fields = ['product_id__product_name']
@@ -106,6 +109,7 @@ class ProductVersionReadUpdateDeleteView(GenericAPIViewSerializerMixin, Retrieve
 
 class CategoryAPI(ListCreateAPIView):
     queryset = Category.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CategorySerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = []
@@ -119,6 +123,7 @@ class CategoryReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 
 class BrandAPI(GenericAPIViewSerializerMixin, ListCreateAPIView):
     queryset = Brand.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['category_id']
     search_fields = ['name']
@@ -139,6 +144,7 @@ class BrandReadUpdateDeleteView(GenericAPIViewSerializerMixin, RetrieveUpdateDes
 
 class SizeAPI(ListCreateAPIView):
     queryset = Size.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = SizeSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = []
@@ -152,6 +158,7 @@ class SizeReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 
 class ColorAPI(ListCreateAPIView):
     queryset = Color.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = ColorSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = []
