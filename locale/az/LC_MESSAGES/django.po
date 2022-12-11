@@ -1,0 +1,355 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-12 01:32+0400\n"
+"PO-Revision-Date: 2022-12-12 01:44+0400\n"
+"Last-Translator:   <admin@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\accounts\forms.py:15
+msgid "Enter your username"
+msgstr "istifadəçi adınızı daxil edin"
+
+#: .\accounts\forms.py:23 .\accounts\forms.py:37
+msgid "Password"
+msgstr "Şifrəniz"
+
+#: .\accounts\forms.py:34
+msgid "Your password"
+msgstr "Şifrəniz"
+
+#: .\accounts\forms.py:43
+msgid "Confirm password"
+msgstr "Şifrəni təsdiqləyin"
+
+#: .\accounts\forms.py:46
+msgid "Confirm Password"
+msgstr "Şifrəni təsdiqləyin"
+
+#: .\accounts\forms.py:56
+msgid "Enter your first name"
+msgstr "Adınızı daxil edin"
+
+#: .\accounts\forms.py:62
+msgid "Enter your last name"
+msgstr "Soyadınızı daxil edin"
+
+#: .\accounts\forms.py:68
+msgid "Username"
+msgstr "İstifadəçi adı"
+
+#: .\accounts\models.py:7
+msgid "email address"
+msgstr "e-poçt ünvanı"
+
+#: .\core\templates\base.html:58
+msgid "Welcome to Our store Multikart"
+msgstr "Multikart mağazamıza xoş gəlmisiniz"
+
+#: .\core\templates\base.html:59 .\core\templates\base.html:757
+msgid "Call Us"
+msgstr "Əlaqə nömrəsi"
+
+#: .\core\templates\base.html:71
+msgid "Change password"
+msgstr "Şifrəni dəyiş"
+
+#: .\core\templates\base.html:72
+msgid "Log out"
+msgstr "Çıxış"
+
+#: .\core\templates\base.html:75
+msgid "My Account"
+msgstr "Hesabım"
+
+#: .\core\templates\base.html:77
+msgid "Log in"
+msgstr "Daxil ol"
+
+#: .\core\templates\base.html:243
+msgid "Home"
+msgstr "Ana Səhifə"
+
+#: .\core\templates\base.html:246
+msgid "new demos"
+msgstr "Yeni Nümayişlər"
+
+#: .\core\templates\base.html:246 .\core\templates\base.html:509
+#: .\core\templates\base.html:517
+msgid "new"
+msgstr "Yeni"
+
+#: .\core\templates\base.html:264 .\core\templates\base.html:725
+msgid "clothing"
+msgstr "Geyimlər"
+
+#: .\core\templates\base.html:272
+msgid "watch"
+msgstr "Saat"
+
+#: .\core\templates\base.html:273
+msgid "shoes"
+msgstr "Ayaqqabı"
+
+#: .\core\templates\base.html:275
+msgid "electronics"
+msgstr "Elektronika"
+
+#: .\core\templates\base.html:283
+msgid "bags"
+msgstr "Çanta"
+
+#: .\core\templates\base.html:285
+msgid "flower"
+msgstr "Çiçək"
+
+#: .\core\templates\base.html:286
+msgid "vegetable"
+msgstr "Tərəvəz"
+
+#: .\core\templates\base.html:289
+msgid "furniture"
+msgstr "Mebel"
+
+#: .\core\templates\base.html:306
+msgid "shop"
+msgstr "Mağaza"
+
+#: .\core\templates\base.html:308
+msgid "Product list"
+msgstr "Məhsul Səhifəsi"
+
+#: .\core\templates\base.html:324
+msgid "product"
+msgstr "Məhsul"
+
+#: .\core\templates\base.html:367
+msgid "features"
+msgstr "Xüsusiyyətlər"
+
+#: .\core\templates\base.html:377
+msgid "portfolio"
+msgstr "Portfel"
+
+#: .\core\templates\base.html:402
+msgid "add to cart"
+msgstr "Səbətə əlavə et"
+
+#: .\core\templates\base.html:450
+msgid "product elements"
+msgstr "Məhsul elementləri"
+
+#: .\core\templates\base.html:471 .\core\templates\base.html:477
+#: .\core\templates\base.html:478
+msgid "email template"
+msgstr "E-poçt şablonu"
+
+#: .\core\templates\base.html:475 .\core\templates\base.html:476
+#: .\core\templates\base.html:519
+msgid "order success"
+msgstr "Sifariş"
+
+#: .\core\templates\base.html:488
+msgid "pages"
+msgstr "Digər"
+
+#: .\core\templates\base.html:499
+msgid "account"
+msgstr "hesab"
+
+#: .\core\templates\base.html:501
+msgid "wishlist"
+msgstr "İstək siyahısı"
+
+#: .\core\templates\base.html:502
+msgid "cart"
+msgstr "Səbət"
+
+#: .\core\templates\base.html:504
+msgid "log in"
+msgstr "Daxil ol"
+
+#: .\core\templates\base.html:505
+msgid "register"
+msgstr "Qeydiyyat"
+
+#: .\core\templates\base.html:506
+msgid "contact"
+msgstr "Əlaqə"
+
+#: .\core\templates\base.html:507
+msgid "forget password"
+msgstr "Şifrəni unutmusunuz"
+
+#: .\core\templates\base.html:508
+msgid "profile"
+msgstr "Profil"
+
+#: .\core\templates\base.html:513
+msgid "about us"
+msgstr "Haqqımızda"
+
+#: .\core\templates\base.html:514
+msgid "search"
+msgstr "Axtarış"
+
+#: .\core\templates\base.html:517
+msgid "review"
+msgstr "Rəylər"
+
+#: .\core\templates\base.html:521
+msgid "compare"
+msgstr "Müqayisə"
+
+#: .\core\templates\base.html:539
+msgid "blog"
+msgstr "Blog"
+
+#: .\core\templates\base.html:673
+msgid "KNOW IT ALL FIRST!"
+msgstr "İlk siz öyrənin"
+
+#: .\core\templates\base.html:674
+msgid "Never Miss Anything From Multikart By Signing Up To Our Newsletter."
+msgstr "Bülletenimizdə qeydiyyatdan keçərək Multikartdan heç nəyi qaçırmayın."
+
+#: .\core\templates\base.html:719
+msgid "my account"
+msgstr "hesab"
+
+#: .\core\templates\base.html:723
+msgid "mens"
+msgstr "Kişi"
+
+#: .\core\templates\base.html:724
+msgid "womens"
+msgstr "Qadın"
+
+#: .\core\templates\base.html:726
+msgid "accessories"
+msgstr "aksesuarlar"
+
+#: .\core\templates\base.html:727
+msgid "featured"
+msgstr "Xüsusiyyət"
+
+#: .\core\templates\base.html:735
+msgid "why we choose"
+msgstr "niyə bizi seçin"
+
+#: .\core\templates\base.html:739
+msgid "shipping & return"
+msgstr "çatdırılma"
+
+#: .\core\templates\base.html:740
+msgid "secure shopping"
+msgstr "təhlükəsiz alış-veriş"
+
+#: .\core\templates\base.html:741
+msgid "gallary"
+msgstr "qalereya"
+
+#: .\core\templates\base.html:742
+msgid "affiliates"
+msgstr "filiallar"
+
+#: .\core\templates\base.html:743
+msgid "contacts"
+msgstr "Əlaqə"
+
+#: .\core\templates\base.html:751
+msgid "store information"
+msgstr "Mağaza məlumatları"
+
+#: .\core\templates\base.html:755
+msgid "Multikart Demo Store, Demo store India 345-659"
+msgstr "Multikart Demo mağaza, Demo mağaza Azərbaycan 345-659"
+
+#: .\core\templates\base.html:758
+msgid "Email Us"
+msgstr "Əlaqə email"
+
+#: .\core\templates\base.html:759
+msgid "Fax"
+msgstr "Fax"
+
+#: .\core\templates\index.html:18 .\core\templates\index.html:36
+msgid "welcome to fashion"
+msgstr "xoş gəlmisiniz"
+
+#: .\core\templates\index.html:19
+msgid "men fashion"
+msgstr "Kişi geyimləri"
+
+#: .\core\templates\index.html:20 .\core\templates\index.html:38
+msgid "shop now"
+msgstr "indi al"
+
+#: .\core\templates\index.html:37
+msgid "women fashion"
+msgstr "Qadın geyimləri"
+
+#: .\core\templates\index.html:64 .\core\templates\index.html:80
+msgid "save"
+msgstr "endirim"
+
+#: .\core\templates\index.html:65
+msgid "men"
+msgstr "Kişi"
+
+#: .\core\templates\index.html:81
+msgid "women"
+msgstr "Qadın"
+
+#: .\core\templates\index.html:95 .\core\templates\index.html:174
+msgid "special offer"
+msgstr "xüsusi təklif"
+
+#: .\core\templates\index.html:96
+msgid "top collection"
+msgstr "top kolleksiya"
+
+#: .\core\templates\index.html:102
+msgid ""
+"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n"
+"                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+msgstr ""
+"Lorem Ipsum sadəcə çap və çap sənayesinin saxta mətnidir. Lorem Ipsum \"\n"
+"\"1500-cü illərdən bəri sənayenin standart dummy mətni olmuşdur."
+
+#: .\core\templates\index.html:173
+msgid "fashion trends"
+msgstr "trend geyimlər"
+
+#: .\core\templates\index.html:186
+msgid "exclusive products"
+msgstr "eksklüziv məhsullar"
+
+#: .\core\templates\index.html:187
+msgid "special products"
+msgstr "xüsusi məhsullar"
+
+#: .\core\templates\index.html:195
+msgid "New Products"
+msgstr "Ən yeni məhsullar"
+
+#: .\core\templates\index.html:196
+msgid "Featured Products"
+msgstr "Seçilmiş Məhsullar"
+
+#: .\core\templates\index.html:197
+msgid "Best Sellers"
+msgstr "Ən çox satılanlar"

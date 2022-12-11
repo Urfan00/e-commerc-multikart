@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 class BlackListIPMiddleware(MiddlewareMixin):
     BLACK_LIST_IP = [
-        '127.0.0.1'
+        ''
     ]
 
     def process_request(self, request):
