@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'rosetta',
+    'corsheaders',
+    'django_celery_beat',
 
     'accounts',
     'core',
@@ -60,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware', # new2
+    'corsheaders.middleware.CorsMiddleware', #new3
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -97,8 +100,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_DB', 'multikart_db'),
-        'USER': os.environ.get('POSTGRES_USER', 'user'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', '12345'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', '123456789'),
         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
         'PORT': os.environ.get('POSTGRES_PORT', 5432)
     }
@@ -243,3 +246,11 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=30),
 }
+
+#CELERY STUFF
+BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_ACCEPT_cONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Baku'
