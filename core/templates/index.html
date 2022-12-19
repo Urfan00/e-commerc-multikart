@@ -123,7 +123,9 @@
                                                 alt=""></a>
                                     </div>
                                     <div class="cart-info cart-wrap">
-                                        <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                        {% if product.quantity > 0 %}
+                                            <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ product.id }}" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                        {% endif %}
                                         <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
                                         <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
@@ -208,7 +210,9 @@
                                                     </a>
                                                 </div>
                                                 <div class="cart-info cart-wrap">
-                                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                                    {% if new.quantity > 0 %}
+                                                        <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ new.id }}" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                                    {% endif %}
                                                     <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ new.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                                     <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
                                                     <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
@@ -251,7 +255,9 @@
                                                             class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                                 </div>
                                                 <div class="cart-info cart-wrap">
-                                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                                    {% if read.quantity > 0 %}
+                                                        <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ read.id }}" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                                    {% endif %}
                                                     <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ read.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                                     <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
                                                     <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
@@ -294,7 +300,9 @@
                                                             class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                                 </div>
                                                 <div class="cart-info cart-wrap">
-                                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                                    {% if pro.quantity > 0 %}
+                                                        <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ pro.id }}" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                                    {% endif %}
                                                     <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ pro.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                                     <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
                                                     <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
@@ -660,7 +668,7 @@
 
     <!-- cart start -->
     <div class="addcart_btm_popup" id="fixed_cart_icon">
-        <a href="#" class="fixed_cart">
+        <a href="{% url 'basket' %}" class="fixed_cart">
             <i class="ti-shopping-cart"></i>
         </a>
     </div>

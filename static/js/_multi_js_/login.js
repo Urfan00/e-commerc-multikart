@@ -8,7 +8,7 @@ form.addEventListener('submit', async function(event) {
         password: form.password.value
     }
 
-    let response = await fetch(`/en/api/login/`, {
+    let response = await fetch('http://localhost:8000/api/login/', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

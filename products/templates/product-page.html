@@ -312,7 +312,7 @@
                                                             <i class="ti-angle-left"></i>
                                                         </button>
                                                     </span>
-                                                    <input type="text" name="quantity" disabled class="form-control input-number" value="1">
+                                                    <input id="detail-qty" type="text" name="quantity" disabled class="form-control input-number" value="1">
                                                     <span class="input-group-prepend">
                                                         <button type="button" class="btn quantity-right-plus" data-type="plus" data-field="">
                                                             <i class="ti-angle-right"></i>
@@ -321,9 +321,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="product-buttons"><a href="#" data-toggle="modal"
-                                                data-target="#addtocart" class="btn btn-solid">add to cart</a> <a
-                                                href="#" class="btn btn-solid">buy now</a></div>
+                                        {% for pro_qty in product.product_version.all %}
+                                            {% if pro_qty.quantity > 0 %}
+                                                <div class="product-buttons">
+                                                    <a href="#" onclick="AddToBasketinDetail($(this).attr('data'))" data="{{ product.id }}" data-toggle="modal" data-target="#addtocart" class="btn btn-solid">add to cart</a>
+                                                    <a href="#" class="btn btn-solid">buy now</a>
+                                                </div>
+                                            {% else %}
+                                                <div class="product-buttons">
+                                                    <a href="#" onclick="AddToBasketinDetail($(this).attr('data'))" data="{{ product.id }}" data-toggle="modal" data-target="#addtocart" class="btn btn-solid disabled">add to cart</a>
+                                                    <a href="#" class="btn btn-solid disabled">buy now</a>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
                                         <div class="border-product">
                                             <h6 class="product-title">product details</h6>
                                             <p>{{ product.product_details }}</p>
@@ -544,7 +554,9 @@
                                             class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                 </div>
                                 <div class="cart-info cart-wrap">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                    {% if relate.quantity > 0 %}
+                                        <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ relate.id }}" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                    {% endif %}
                                     <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ relate.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                     <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
                                     <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>

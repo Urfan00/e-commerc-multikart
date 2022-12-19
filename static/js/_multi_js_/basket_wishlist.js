@@ -57,3 +57,61 @@ function functionAddToWishlist(ProductID) {
 function removeWishlist(ProductID) {
     deleteProduct.deleteFromWishlist(ProductID)
 }
+
+
+const deleteBasket = {
+    deleteProductBasket(ProductID) {
+        return fetch('http://localhost:8000/api/basket/', {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+                'Authorization': `Bearer ${localStorage.getItem('user-access-token')}`
+            },
+            body: JSON.stringify({
+                'product': ProductID
+            })
+        });
+    }
+}
+
+
+function removeBasket(ProductID) {
+    deleteBasket.deleteProductBasket(ProductID)
+}
+
+
+const addCart = {
+    addProductCart(ProductID, Quantity) {
+        return fetch('http://localhost:8000/api/basket/', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken,
+                'Authorization': `Bearer ${localStorage.getItem('user-access-token')}`
+            },
+            body: JSON.stringify({
+                'product':ProductID,
+                'quantity':Quantity
+            })
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                window.alert(data.message);
+            }
+        })
+    }
+}
+
+
+function AddToBasket(ProductID) {
+    const quantity = 1;
+    addCart.addProductCart(ProductID, quantity);
+    deleteProduct.deleteFromWishlist(ProductID);
+}
+
+
+function AddToBasketinDetail(ProductID) {
+    const quantity = parseInt(document.getElementById('detail-qty').value);
+    addCart.addProductCart(ProductID, quantity);
+    deleteProduct.deleteFromWishlist(ProductID);
+}

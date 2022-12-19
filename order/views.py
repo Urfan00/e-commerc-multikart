@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Wishlist
+from django.db.models import Q
+from .models import Basket, BasketItem, Wishlist
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
@@ -17,8 +18,24 @@ class WishlistView(LoginRequiredMixin, ListView):
         return self.queryset
 
 
-def basket(request):
-    return render(request, 'cart.html')
+class BasketView(LoginRequiredMixin, ListView):
+    model = Basket
+    template_name = 'cart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BasketView, self).get_context_data(**kwargs)
+        user_basket =  BasketItem.objects.filter(Q(basket_id__user_id = self.request.user), Q(basket_id__is_active = True)).all()
+
+        if user_basket:
+            context['user_basket'] = user_basket
+
+        total_price = 0
+
+        for product in user_basket:
+            total_price += product.get_subtotal()
+        context['total_price'] = total_price
+
+        return context
 
 
 def checkout(request):

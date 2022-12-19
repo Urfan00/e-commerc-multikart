@@ -66,8 +66,10 @@
                                                 class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                     </div>
                                     <div class="cart-info cart-wrap">
-                                        <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
-                                        <a href="javascript:void(0)" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
+                                        {% if product.quantity > 0 %}
+                                            <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ product.id }}" data-target="#addtocart" title="Add to cart"><i class="ti-shopping-cart"></i></button>
+                                        {% endif %}
+                                        <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
                                         <a href="#" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
                                     </div>
