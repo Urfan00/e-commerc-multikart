@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rosetta',
     'corsheaders',
     'django_celery_beat',
+    'drf_yasg',
 
     'accounts',
     'core',
