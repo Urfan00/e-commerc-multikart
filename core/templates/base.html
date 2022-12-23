@@ -608,43 +608,36 @@
                                                     class="img-fluid blur-up lazyload" alt=""> <i
                                                     class="ti-shopping-cart"></i></div>
                                             <ul class="show-div shopping-cart">
-                                                <li>
-                                                    <div class="media">
-                                                        <a href="#"><img alt="" class="mr-3"
-                                                                src="{% static 'images/fashion/product/1.jpg' %}"></a>
-                                                        <div class="media-body">
-                                                            <a href="#">
-                                                                <h4>item name</h4>
-                                                            </a>
-                                                            <h4><span>1 x $ 299.00</span></h4>
+                                                {% if user_basket %}
+                                                    {% for basket in user_basket %}
+                                                        <li>
+                                                            <div class="media">
+                                                                <a href="{% url 'product_detail' basket.product_version_id.product_id.slug %}"><img class="mr-3" src="{{ basket.product_version_id.product_id.cover_image.url }}" alt="Generic placeholder image"></a>
+                                                                <div class="media-body">
+                                                                    <a href="{% url 'product_detail' basket.product_version_id.product_id.slug %}"><h4>{{ basket.product_version_id.product_id.product_name }}</h4></a>
+                                                                    {% if basket.product_version_id.product_id.in_sale %}
+                                                                        <h4><span>{{ basket.quantity }} x $ {{ basket.product_version_id.product_id.new_price | floatformat:2 }}</span></h4>
+                                                                    {% else %}
+                                                                        <h4><span>{{ basket.quantity }} x $ {{ basket.product_version_id.product_id.price | floatformat:2 }}</span></h4>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="close-circle"><a href="{{ request.path }}" onclick="removeBasket($(this).attr('data'))" data="{{ basket.id }}"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+                                                        </li>
+                                                    {% endfor %}
+                                                    <li>
+                                                        <div class="total">
+                                                            <h5>subtotal : <span>${{ total_price|floatformat:2 }}</span></h5>
                                                         </div>
-                                                    </div>
-                                                    <div class="close-circle"><a href="#"><i class="fa fa-times"
-                                                                aria-hidden="true"></i></a></div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <a href="#"><img alt="" class="mr-3"
-                                                                src="{% static 'images/fashion/product/2.jpg' %}"></a>
-                                                        <div class="media-body">
-                                                            <a href="#">
-                                                                <h4>item name</h4>
-                                                            </a>
-                                                            <h4><span>1 x $ 299.00</span></h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="close-circle"><a href="#"><i class="fa fa-times"
-                                                                aria-hidden="true"></i></a></div>
-                                                </li>
-                                                <li>
-                                                    <div class="total">
-                                                        <h5>subtotal : <span>$299.00</span></h5>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="buttons"><a href="cart.html" class="view-cart">view
-                                                            cart</a> <a href="#" class="checkout">checkout</a></div>
-                                                </li>
+                                                    </li>
+                                                    <li>
+                                                        <div class="buttons">
+                                                            <a href="{% url 'basket' %}" class="view-cart">view cart</a>
+                                                            <a href="{% url 'checkout' %}" class="checkout">checkout</a></div>
+                                                    </li>
+                                                {% else %}
+                                                    <h5>Your cart is currently empty.</h5>
+                                                {% endif %}
                                             </ul>
                                         </li>
                                     </ul>
@@ -676,13 +669,9 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <form
-                                action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda"
-                                class="form-inline subscribe-form auth-form needs-validation" method="post"
-                                id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                            <form class="form-inline subscribe-form auth-form needs-validation" method="post" id="subscribeForm" name="mc-embedded-subscribe-form">
                                 <div class="form-group mx-sm-3">
-                                    <input type="text" class="form-control" name="EMAIL" id="mce-EMAIL"
-                                        placeholder="Enter your email" required="required">
+                                    <input type="text" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
                                 </div>
                                 <button type="submit" class="btn btn-solid" id="mc-submit">subscribe</button>
                             </form>

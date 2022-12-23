@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg, Q
 from products.forms import ReviewForm
 from products.models import Brand, Category, Color, Image, ProductReview, ProductVersion, Products, Size
@@ -6,7 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView
 
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Products
     template_name = 'category-page.html'
     context_object_name = 'products'
@@ -22,9 +23,9 @@ class ProductListView(ListView):
         else:
             context['brands'] = Brand.objects.filter(category_id__category_name= 'Fashion').all()
         if self.request.GET.get('category') == 'Shoes':
-            context['sizes'] = Size.objects.all()[4:]
+            context['sizes'] = Size.objects.all()[3:]
         else:
-            context['sizes'] = Size.objects.all()[:4]
+            context['sizes'] = Size.objects.all()[:3]
         if ProductVersion.objects.filter(product_id__category_id__category_name=self.request.GET.get('category')).order_by("-created_at").all():
             context['new_products'] = ProductVersion.objects.filter(product_id__category_id__category_name=self.request.GET.get('category')).order_by("-created_at").all()[:3]
             context['new_products2'] = ProductVersion.objects.filter(product_id__category_id__category_name=self.request.GET.get('category')).order_by("-created_at").all()[3:6]
@@ -57,7 +58,7 @@ class ProductListView(ListView):
         return self.queryset
 
 
-class ProductDetailView(DetailView, CreateView):
+class ProductDetailView(LoginRequiredMixin, DetailView, CreateView):
     model = Products
     template_name = 'product-page.html'
     form_class = ReviewForm
@@ -96,7 +97,7 @@ class ProductDetailView(DetailView, CreateView):
         return redirect("product_detail", slug = self.kwargs.get('slug'))
 
 
-class SearchResultsView(ListView):
+class SearchResultsView(LoginRequiredMixin, ListView):
     model = Products
     template_name = 'search.html'
     context_object_name = 'products'

@@ -104,4 +104,5 @@ class CreateProfileView(LoginRequiredMixin, MultiModelFormView):
         address.user_id = self.request.user
         detail.save()
         address.save()
+        messages.success(self.request, 'Your personal detail and shipping address has been sent successfully!')
         return super(CreateProfileView, self).forms_valid(forms)

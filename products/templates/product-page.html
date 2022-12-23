@@ -459,6 +459,13 @@
                                                                 <h6 class="fw-bold text-primary mx-2 mb-1">{{ review.name | title}}</h6>
                                                                 <h6 class="text-muted small mx-2 mb-1">Shared publicly - {{ review.created_at | date:"j/n/Y"}}</h6>
                                                             </div>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star" {% if review.product_rate >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                            </div>
                                                         </div>
                                                         <div class="text-muted">
                                                             {{ review.review_title_1 }}

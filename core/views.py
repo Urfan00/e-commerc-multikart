@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.db.models import Q
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from order.models import BasketItem
 from products.models import ProductVersion
 from .models import Blog, Employees, Faq, Instagram, Logo, OurTeam
 from .forms import ContactFormModel
 from django.urls import reverse_lazy
 
 
-class IndexView(ListView):
+class IndexView(LoginRequiredMixin, ListView):
     model = Blog
     template_name = 'index.html'
     context_object_name = 'blogs'
@@ -24,7 +26,7 @@ class IndexView(ListView):
         return context
 
 
-class AboutListView(ListView):
+class AboutListView(LoginRequiredMixin, ListView):
     model = OurTeam
     template_name = 'about-page.html'
     context_object_name = 'team'
@@ -46,7 +48,7 @@ class CreateContactView(LoginRequiredMixin, CreateView):
         return redirect('contact')
 
 
-class Faq(ListView):
+class Faq(LoginRequiredMixin, ListView):
     template_name = 'faq.html'
     model = Faq
     context_object_name = 'faqs'

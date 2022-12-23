@@ -114,13 +114,13 @@ class ProductVersion(models.Model):
 
 
 class ProductReview(models.Model):
-    Rates = {
+    Rates = (
         (1, "20"),
         (2, "40"),
         (3, "60"),
         (4, "80"),
         (5, "100")
-    }
+    )
     product_rate = models.IntegerField(choices=Rates)
     name = models.CharField(max_length=30)
     email = models.EmailField()

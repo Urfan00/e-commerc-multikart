@@ -98,7 +98,7 @@
                                             <div>Product <span>Total</span></div>
                                         </div>
                                         <ul class="qty">
-                                            {% for product in user_checkout %}
+                                            {% for product in user_basket %}
                                                 <li>{{ product.product_version_id.product_id.product_name }} × {{ product.quantity }} <span>${{ product.get_subtotal | floatformat:2 }}</span></li>
                                             {% endfor %}
                                         </ul>
