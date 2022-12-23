@@ -1,8 +1,11 @@
-from django.shortcuts import render
+import datetime
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.db.models import Q
-from .models import Basket, BasketItem, Wishlist
+from .forms import BillingAddressFromModel
+from .models import Basket, BasketItem, Order, Wishlist
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 
 
@@ -38,9 +41,79 @@ class BasketView(LoginRequiredMixin, ListView):
         return context
 
 
-def checkout(request):
-    return render(request, 'checkout.html')
+class CheckoutView(LoginRequiredMixin , CreateView):
+    template_name = 'checkout.html'
+    form_class = BillingAddressFromModel
+    success_url = reverse_lazy('order_success')
+
+    def get_context_data(self, **kwargs):
+        context = super(CheckoutView, self).get_context_data(**kwargs)
+        user_checkout =  BasketItem.objects.filter(Q(basket_id__user_id = self.request.user), Q(basket_id__is_active = True)).all()
+
+        if user_checkout:
+            context['user_checkout'] = user_checkout
+
+        total_price = 0
+
+        for product in user_checkout:
+            total_price += product.get_subtotal()
+        context['total_price'] = total_price
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        basket = Basket.objects.filter(user_id=self.request.user, is_active=True).first()
+        products = BasketItem.objects.filter(basket_id__user_id = self.request.user, basket_id__is_active = True).all()
+
+        total_price = 0
+
+        if form.is_valid():
+            billing_address_form = form.save(commit=False)
+            billing_address_form.user_id = self.request.user
+            billing_address_form.save()
 
 
-def ordersuccess(request):
-    return render(request, 'order-success.html')
+            for product in products:
+                total_price += product.get_subtotal()
+                product.product_version_id.quantity -= product.quantity
+                product.product_version_id.save()
+
+            order = Order(user_id=self.request.user, address_id=billing_address_form, basket_id=basket)
+            order.total += total_price
+            order.save()
+
+            basket.is_active = False
+            basket.save()
+
+        return redirect('order_success')
+
+
+class OrderView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = 'order-success.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderView, self).get_context_data(**kwargs)
+        user_order = Order.objects.filter(user_id=self.request.user).last()
+        if user_order:
+            context['order'] = user_order.basket_id.basket_items.all()
+            context['user_order'] = user_order
+
+            total_price = 0
+            Tax_GST = 10
+            shipping = 12
+
+            for product in context['order']:
+                total_price += product.get_subtotal()
+
+            context['tax_gst'] = Tax_GST
+            context['shipping'] = shipping
+            context['total_price'] = total_price
+            context['total'] = Tax_GST +shipping + total_price
+
+            month = datetime.timedelta(days=30)
+            expected_date = (user_order.created_at + month).strftime('%B %d, %Y')
+            context['expected_date'] = expected_date
+
+        return context

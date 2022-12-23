@@ -49,3 +49,39 @@ class BasketItem(models.Model):
         else:
             subtotal = self.product_version_id.product_id.price * self.quantity
         return subtotal
+
+
+class BillingAddress(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    phone = models.CharField(max_length=13)
+    email_address = models.CharField(max_length=30)
+    country = models.CharField(max_length=30)
+    address = models.CharField(max_length=150)
+    town_city = models.CharField(max_length=150)
+    state_county = models.CharField(max_length=150)
+    postal_code = models.CharField(max_length=5)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.first_name}'s address"
+
+    class Meta:
+        verbose_name = "Billing Address"
+        verbose_name_plural = "Billing Addresses"
+
+
+class Order(models.Model):
+    total = models.PositiveIntegerField(default=0)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    address_id = models.ForeignKey(BillingAddress, on_delete=models.CASCADE, related_name="billing_address")
+    basket_id = models.ForeignKey(Basket, on_delete = models.CASCADE, related_name="order_basket")
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user_id.username}'s order"
+
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'
