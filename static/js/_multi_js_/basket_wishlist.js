@@ -18,7 +18,7 @@ const csrftoken = getCookie('csrftoken');
 
 const addProduct = {
     addToWishlist(ProductID) {
-        return fetch('http://localhost:8000/api/wishlist/', {
+        return fetch('/api/wishlist/', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -34,7 +34,7 @@ const addProduct = {
 
 const deleteProduct = {
     deleteFromWishlist(ProductID) {
-        return fetch('http://localhost:8000/api/wishlist/', {
+        return fetch('/api/wishlist/', {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json',
@@ -61,7 +61,7 @@ function removeWishlist(ProductID) {
 
 const deleteBasket = {
     deleteProductBasket(ProductID) {
-        return fetch('http://localhost:8000/api/basket/', {
+        return fetch('/api/basket/', {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json',
@@ -83,7 +83,7 @@ function removeBasket(ProductID) {
 
 const addCart = {
     addProductCart(ProductID, Quantity) {
-        return fetch('http://localhost:8000/api/basket/', {
+        return fetch('/api/basket/', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -127,7 +127,7 @@ subscribe_form.addEventListener('submit', function (event) {
         email: e_mail.value
     };
 
-    fetch('http://localhost:8000/api/subscribe/', {
+    fetch('/api/subscribe/', {
         method: 'POST',
         headers: {
             'X-CSRFToken': csrftoken,

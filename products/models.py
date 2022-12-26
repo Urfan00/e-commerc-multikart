@@ -98,7 +98,7 @@ class ProductVersion(models.Model):
     rate_avg = models.FloatField(default=0)
     review_count = models.PositiveIntegerField(default=0)
     read_count = models.PositiveIntegerField(default=0)
-    size_id = models.ManyToManyField(Size, related_name="product_size")
+    size_id = models.ManyToManyField(Size, blank=True, related_name="product_size")
     color_id = models.ManyToManyField(Color, related_name="product_color")
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_version")
     images_id = models.ManyToManyField(Image, related_name='images_of_products')

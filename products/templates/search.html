@@ -77,10 +77,10 @@
                                 <div class="product-detail">
                                     <div class="rating">
                                         <i class="fa fa-star" {% if product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                        <i class="fa fa-star" {% if product.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                        <i class="fa fa-star" {% if product.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                        <i class="fa fa-star" {% if product.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                        <i class="fa fa-star" {% if product.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                        <i class="fa fa-star" {% if product.rate_avg >= 1.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                        <i class="fa fa-star" {% if product.rate_avg >= 2.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                        <i class="fa fa-star" {% if product.rate_avg >= 3.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                        <i class="fa fa-star" {% if product.rate_avg >= 4.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
                                     </div>
                                     <a href="{% url 'product_detail' product.product_id.slug %}">
                                         <h6>{{ product.product_id.product_name }}</h6>

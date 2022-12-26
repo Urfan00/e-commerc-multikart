@@ -106,9 +106,26 @@
                             <div class="collection-collapse-block border-0 open">
                                 <h3 class="collapse-block-title">price</h3>
                                 <div class="collection-collapse-block-content">
-                                    <div class="wrapper mt-3">
-                                        <div class="range-slider">
-                                            <input type="text" class="js-range-slider" value="" />
+                                    <div class="collection-brand-filter">
+                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="hundred">
+                                            <label class="custom-control-label" for="hundred"><a style="color: #777777" href='?maxPrice=100'>$0 - $100</a></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="twohundred">
+                                            <label class="custom-control-label" for="twohundred"><a style="color: #777777" href='?minPrice=100&maxPrice=200'>$100 - $200</a></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="threehundred">
+                                            <label class="custom-control-label" for="threehundred"><a style="color: #777777" href='?minPrice=200&maxPrice=300'>$200 - $300</a></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fourhundred">
+                                            <label class="custom-control-label" for="fourhundred"><a style="color: #777777" href='?minPrice=300&maxPrice=500'>$300 - $500</a></label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="fourhundredabove">
+                                            <label class="custom-control-label" for="fourhundredabove"><a style="color: #777777" href='?minPrice=500'>$500 above</a></label>
                                         </div>
                                     </div>
                                 </div>
@@ -126,10 +143,10 @@
                                             <div class="media-body align-self-center">
                                                 <div class="rating">
                                                     <i class="fa fa-star" {% if new_product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 1.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 2.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 3.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 4.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
                                                 </div>
                                                 <a href="{% url 'product_detail' new_product.product_id.slug %}">
                                                     <h6>{{ new_product.product_id.product_name }}</h6>
@@ -150,10 +167,10 @@
                                             <div class="media-body align-self-center">
                                                 <div class="rating">
                                                     <i class="fa fa-star" {% if new_product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                    <i class="fa fa-star" {% if new_product.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 1.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 2.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 3.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                    <i class="fa fa-star" {% if new_product.rate_avg >= 4.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
                                                 </div>
                                                 <a href="{% url 'product_detail' new_product.product_id.slug %}">
                                                     <h6>{{ new_product.product_id.product_name }}</h6>
@@ -242,52 +259,94 @@
                                         </div>
                                         <div class="product-wrapper-grid product-load-more">
                                             <div class="row margin-res">
-                                                {% for product in products %}
-                                                    <div class="col-xl-3 col-6 col-grid-box">
-                                                        <div class="product-box">
-                                                            <div class="img-wrapper">
-                                                                <div class="front">
-                                                                    <a href="{% url 'product_detail' product.product_id.slug %}"><img src="{{ product.product_id.cover_image.url }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                                                                </div>
-                                                                <div class="cart-info cart-wrap">
-                                                                    {% if product.quantity > 0 %}
-                                                                        <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ product.id }}" data-target="#addtocart" title="Add to cart"> <i class="ti-shopping-cart"></i></button>
-                                                                    {% endif %}
-                                                                    <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
-                                                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
-                                                                    <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product-detail">
-                                                                <div>
-                                                                    <div class="rating">
-                                                                        <i class="fa fa-star" {% if product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                        <i class="fa fa-star" {% if product.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                        <i class="fa fa-star" {% if product.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                        <i class="fa fa-star" {% if product.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                        <i class="fa fa-star" {% if product.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                {% if products %}
+                                                    {% for product in products %}
+                                                        <div class="col-xl-3 col-6 col-grid-box">
+                                                            <div class="product-box">
+                                                                <div class="img-wrapper">
+                                                                    <div class="front">
+                                                                        <a href="{% url 'product_detail' product.product_id.slug %}"><img src="{{ product.product_id.cover_image.url }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                                                     </div>
-                                                                    <a href="#">
-                                                                        <h6>{{ product.product_id.product_name }}</h6>
-                                                                    </a>
-                                                                    <p>{{ product.product_id.short_description }}</p>
-                                                                    {% if product.product_id.in_sale %}
-                                                                        <h4>${{ product.product_id.new_price|floatformat:2 }} <del>${{ product.product_id.price|floatformat:2 }}</del></h4>
-                                                                    {% else %}
-                                                                        <h4>${{ product.product_id.price|floatformat:2 }}</h4>
-                                                                    {% endif %}
-                                                                    <ul class="color-variant">
-                                                                        {% for color in product.color_id.all %}
-                                                                            <li style="background-color: {{color.name|lower}}; border: 1px solid #aaa;"></li>
-                                                                        {% endfor %}
-                                                                    </ul>
+                                                                    <div class="cart-info cart-wrap">
+                                                                        {% if product.quantity > 0 %}
+                                                                            <button data-toggle="modal" onclick="AddToBasket($(this).attr('data'))" data="{{ product.id }}" data-target="#addtocart" title="Add to cart"> <i class="ti-shopping-cart"></i></button>
+                                                                        {% endif %}
+                                                                        <a href="javascript:void(0)" onclick = "functionAddToWishlist($(this).attr('data'))" data="{{ product.id }}" title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a>
+                                                                        <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
+                                                                        <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-detail">
+                                                                    <div>
+                                                                        <div class="rating">
+                                                                            <i class="fa fa-star" {% if product.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                            <i class="fa fa-star" {% if product.rate_avg >= 1.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                            <i class="fa fa-star" {% if product.rate_avg >= 2.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                            <i class="fa fa-star" {% if product.rate_avg >= 3.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                            <i class="fa fa-star" {% if product.rate_avg >= 4.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                        </div>
+                                                                        <a href="#">
+                                                                            <h6>{{ product.product_id.product_name }}</h6>
+                                                                        </a>
+                                                                        <p>{{ product.product_id.short_description }}</p>
+                                                                        {% if product.product_id.in_sale %}
+                                                                            <h4>${{ product.product_id.new_price|floatformat:2 }} <del>${{ product.product_id.price|floatformat:2 }}</del></h4>
+                                                                        {% else %}
+                                                                            <h4>${{ product.product_id.price|floatformat:2 }}</h4>
+                                                                        {% endif %}
+                                                                        <ul class="color-variant">
+                                                                            {% for color in product.color_id.all %}
+                                                                                <li style="background-color: {{color.name|lower}}; border: 1px solid #aaa;"></li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <div class="col-sm-12 empty-cart-cls text-center ng-star-inserted mt-5">
+                                                        <img src="{% static 'images/_multikart_/empty-search.jpg' %}">
+                                                        <h3 class="mt-5">
+                                                            <strong>Sorry! Couldn't find the product you were looking For!!!</strong>
+                                                        </h3>
+                                                        <h4>Please check if you have misspelt something or try searching with other words.</h4>
                                                     </div>
-                                                {% endfor %}
+                                                {% endif %}
                                             </div>
                                         </div>
+                                        {% if is_paginated %}
+                                            <div class="product-pagination mb-0">
+                                                <div class="theme-paggination-block">
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-md-6 col-sm-12">
+                                                            <nav aria-label="Page navigation">
+                                                                <ul class="pagination">
+                                                                    {% if page_obj.has_previous %}
+                                                                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span><span class="sr-only">Previous</span></a></li>
+                                                                    {% endif %}
+                                                                    {% for page in paginator.page_range %}
+                                                                        {% if page_obj.number == page %}
+                                                                            <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                                                                        {% else %}
+                                                                            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                    {% if page_obj.has_next %}
+                                                                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span> <span class="sr-only">Next</span></a></li>
+                                                                    {% endif %}
+                                                                </ul>
+                                                            </nav>
+                                                        </div>
+                                                        <div class="col-xl-6 col-md-6 col-sm-12">
+                                                            <div class="product-search-count-bottom">
+                                                                <h5>Showing Products 1-8 of {{ productcount }} Result</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

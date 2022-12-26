@@ -3,6 +3,16 @@ version: '3.9'
 
 services:
 
+  nginx:
+      build: ./nginx
+      ports:
+        - 80:80
+      depends_on:
+        - web
+      volumes:
+        - ./static/:/app/static/
+        - ./media/:/app/media/
+
   db:
     image: postgres
     restart: always
@@ -19,7 +29,7 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn multikart.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./media:/app/media
     ports:
@@ -32,7 +42,7 @@ services:
     build:
       context: .
       dockerfile: celery.dockerfile
-    command: celery -A multikart worker --pool=solo -l info
+    command: celery -A multikart worker --beat --scheduler django --loglevel=info
     volumes:
       - ./media:/app/media
     depends_on:

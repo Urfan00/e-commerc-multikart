@@ -23,9 +23,9 @@ class ProductListView(LoginRequiredMixin, ListView):
         else:
             context['brands'] = Brand.objects.filter(category_id__category_name= 'Fashion').all()
         if self.request.GET.get('category') == 'Shoes':
-            context['sizes'] = Size.objects.all()[3:]
+            context['sizes'] = Size.objects.all()[4:]
         else:
-            context['sizes'] = Size.objects.all()[:3]
+            context['sizes'] = Size.objects.all()[:4]
         if ProductVersion.objects.filter(product_id__category_id__category_name=self.request.GET.get('category')).order_by("-created_at").all():
             context['new_products'] = ProductVersion.objects.filter(product_id__category_id__category_name=self.request.GET.get('category')).order_by("-created_at").all()[:3]
             context['new_products2'] = ProductVersion.objects.filter(product_id__category_id__category_name=self.request.GET.get('category')).order_by("-created_at").all()[3:6]
@@ -53,8 +53,14 @@ class ProductListView(LoginRequiredMixin, ListView):
             self.queryset = ProductVersion.objects.filter(size_id__name=size).all()
         elif color:
             self.queryset = ProductVersion.objects.filter(color_id__name=color).all()
+        elif (minPrice and maxPrice):
+            self.queryset = ProductVersion.objects.filter(product_id__new_price__range=(minPrice, maxPrice)).all()
+        elif minPrice:
+            self.queryset = ProductVersion.objects.filter(Q(product_id__new_price__gte = minPrice))
+        elif maxPrice:
+            self.queryset = ProductVersion.objects.filter(Q(product_id__new_price__lte = maxPrice))
         else:
-            self.queryset = ProductVersion.objects.all()
+            self.queryset = ProductVersion.objects.order_by('created_at').all()
         return self.queryset
 
 

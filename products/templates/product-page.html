@@ -461,10 +461,10 @@
                                                             </div>
                                                             <div class="rating">
                                                                 <i class="fa fa-star" {% if review.product_rate >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                <i class="fa fa-star" {% if review.product_rate >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                <i class="fa fa-star" {% if review.product_rate >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                <i class="fa fa-star" {% if review.product_rate >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                                                <i class="fa fa-star" {% if review.product_rate == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 1.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 2.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 3.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                                                <i class="fa fa-star" {% if review.product_rate >= 4.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
                                                             </div>
                                                         </div>
                                                         <div class="text-muted">
@@ -572,10 +572,10 @@
                             <div class="product-detail">
                                 <div class="rating">
                                     <i class="fa fa-star" {% if relate.rate_avg >= 1 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                    <i class="fa fa-star" {% if relate.rate_avg >= 2 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                    <i class="fa fa-star" {% if relate.rate_avg >= 3 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                    <i class="fa fa-star" {% if relate.rate_avg >= 4 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
-                                    <i class="fa fa-star" {% if relate.rate_avg == 5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 1.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 2.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 3.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
+                                    <i class="fa fa-star" {% if relate.rate_avg >= 4.5 %} style="color:orange;" {% else %} style="color:gray;" {% endif %}></i>
                                 </div>
                                 <a href="{% url 'product_detail' relate.product_id.slug %}">
                                     <h6>{{ relate.product_id.product_name }}</h6>
